@@ -20,34 +20,60 @@
         android:hint="@string/username_hint" >
 
         <requestFocus />
-    </EditText>
+    </EditText>   
 
-    <Button
-        android:id="@+id/loginButton"
+    <EditText
+        android:id="@+id/passwordField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/passwordField"
-        android:text="@string/login_button_label" />
-
+        android:layout_alignStart="@id/usernameField"
+        android:layout_alignLeft="@id/usernameField"
+        android:layout_below="@id/usernameField"
+        android:ems="10"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword" />
+    
     <TextView
         android:id="@+id/signUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/sign_up_text" />
+        android:text="@string/sign_up_text"
+        android:visibility="invisible" />
 
-    <EditText
-        android:id="@+id/passwordField"
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/usernameField"
-        android:layout_alignLeft="@+id/usernameField"
-        android:layout_below="@+id/usernameField"
-        android:ems="10"
-        android:hint="@string/password_hint"
-        android:inputType="textPassword" />
+        android:layout_above="@id/signUpText"
+        android:layout_alignStart="@id/passwordField"
+        android:layout_alignLeft="@id/passwordField"
+        android:layout_marginBottom="32dp" >
+
+        <Button
+            android:id="@+id/loginButton"            
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/login_button_label" />
+        <!-- style="?android:attr/borderlessButtonStyle" -->
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/signup_button_label" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/forgotPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonsLayout"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:text="@string/forgot_password_text" />
 
 </RelativeLayout>

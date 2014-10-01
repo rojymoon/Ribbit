@@ -19,5 +19,10 @@
     <string name="signup_error_title">Oops!</string>
     <string name="login_error_message">Please make sure you enter a username and password!</string>
     <string name="menu_logout_label">Logout</string>
+    <string name="signup_button_label">Sign Up!</string>
+    <string name="forgot_password_text">Forgot password</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <string name="enter_email_text">Enter your email to recover your\n\t\t\t\t\tpassword</string>
+    <string name="submit_button_label">Submit</string>
 
 </resources>
