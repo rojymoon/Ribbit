@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <string name="parse_app_id">DRLaMM4N2PrAOXjjbdXbOv4Fp9Gt2zv2OWZ5TpRM</string>
+    <string name="parse_client_key">beiIlODhajVYeKFD48pyMAmnkcggXigbCODGgKO7</string>
 
     <string name="app_name">Ribbit</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Inbox</string>
+    <string name="title_section2">Friends</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="hello_world">Hello world!</string>
@@ -24,5 +26,7 @@
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
     <string name="enter_email_text">Enter your email to recover your\n\t\t\t\t\tpassword</string>
     <string name="submit_button_label">Submit</string>
+    <string name="empty_inbox_label">No new messages!</string>
+    <string name="empty_friends_label">Add friends to begin!</string>
 
 </resources>
