@@ -36,14 +36,12 @@ public class MainActivity extends FragmentActivity implements
 
 	public static final int TAKE_PHOTO_REQUEST = 0;
 	public static final int TAKE_VIDEO_REQUEST = 1;
-	// public static final int PICK_PHOTO_REQUEST = 2;
-	// public static final int PICK_VIDEO_REQUEST = 3;
 	public static final int PICK_VIDEO_PHOTO_REQUEST = 2;
-	
-	public static boolean video_request_flag = false;
 
 	public static final int MEDIA_TYPE_IMAGE = 3;
 	public static final int MEDIA_TYPE_VIDEO = 4;
+	
+	public static boolean video_request_flag = false;
 	
 	public static final int FILE_SIZE_LIMIT = 1024*1024*10; //10 MB
 
@@ -60,28 +58,12 @@ public class MainActivity extends FragmentActivity implements
 				openVideoIntent();
 				break;
 			case 2: // Choose picture
-				/*
-				 * Intent choosePhotoIntent = new
-				 * Intent(Intent.ACTION_GET_CONTENT);
-				 * choosePhotoIntent.setType("image/*");
-				 * startActivityForResult(choosePhotoIntent,
-				 * PICK_PHOTO_REQUEST);
-				 */
-
 				pickPhotoOrVideoIntent("image/*");
 				break;
 			case 3: // Choose video
-				/*
-				 * Intent chooseVideoIntent = new
-				 * Intent(Intent.ACTION_GET_CONTENT);
-				 * chooseVideoIntent.setType("video/*");
-				 * startActivityForResult(chooseVideoIntent,
-				 * PICK_VIDEO_REQUEST);
-				 */
 				video_request_flag = true;
 				Toast.makeText(MainActivity.this, R.string.video_file_size_warning, Toast.LENGTH_LONG).show();
 				pickPhotoOrVideoIntent("video/*");
-
 				break;
 			}
 
@@ -173,11 +155,6 @@ public class MainActivity extends FragmentActivity implements
 			String state = Environment.getExternalStorageState();
 
 			return state.equals(Environment.MEDIA_MOUNTED);
-
-			/*
-			 * if(state.equals(Environment.MEDIA_MOUNTED)){ return true; } else
-			 * return false;
-			 */
 		}
 	};
 
@@ -260,7 +237,6 @@ public class MainActivity extends FragmentActivity implements
 				}
 				
 				Log.i(TAG, "mMediaUri: " + mMediaUri);
-				//if(requestCode == PICK_VIDEO_REQUEST){
 				if(video_request_flag == true){
 					//make sure the file is less than 10 MB
 					int fileSize = 0;
@@ -290,15 +266,30 @@ public class MainActivity extends FragmentActivity implements
 						return;
 					}
 					video_request_flag = false;
-				}
-				
-				//}
+				}				
 			}
 			else {
 				Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 				mediaScanIntent.setData(mMediaUri);
 				sendBroadcast(mediaScanIntent);
 			}
+			
+			Intent recipientsIntent = new Intent(this, RecipientsActivity.class);
+			recipientsIntent.setData(mMediaUri);
+			
+			String fileType;
+			if(requestCode == TAKE_PHOTO_REQUEST || (requestCode == PICK_VIDEO_PHOTO_REQUEST && !video_request_flag)){
+				//if(!video_request_flag){
+					fileType = ParseConstants.TYPE_IMAGE;
+				//}				
+			}
+			else {
+				fileType = ParseConstants.TYPE_VIDEO;
+			}
+			
+			recipientsIntent.putExtra(ParseConstants.KEY_FILE_TYPE, fileType);
+			startActivity(recipientsIntent);
+			
 		} else if (resultCode != RESULT_CANCELED) {
 			Toast.makeText(this, R.string.general_error, Toast.LENGTH_LONG)
 					.show();
