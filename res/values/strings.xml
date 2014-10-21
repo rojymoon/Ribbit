@@ -33,14 +33,6 @@
     <string name="menu_camera_label">Camera</string>
     <string name="error_external_storage">There was a problem accessing your device\'s external storage.</string>
     <string name="general_error">Sorry, there was an error!</string>
-
-    <string-array name="camera_choices">
-        <item>Take Picture</item>
-        <item>Take Video</item>
-        <item>Choose Picture</item>
-        <item>Choose Video</item>
-    </string-array>
-
     <string name="video_file_size_warning">The selected video must be less than 10 MB.</string>
     <string name="error_openeing_file">There was a problem with the selected file.</string>
     <string name="error_file_size_too_large">The selected file is too large! Select a new file.</string>
@@ -50,5 +42,17 @@
     <string name="error_selecting_file">There was an error with the file selected. Please select a different file.</string>
     <string name="success_message">Message sent!</string>
     <string name="error_sending_message">There was an error sending your message. Please try again.</string>
+    <string name="menu_chat_label">Send Text</string>
+    <string name="title_activity_send_text">SendTextActivity</string>
+    <string name="send_text_hint">Enter the text to send</string>
+    <string name="choose_recipient_button_label">Choose recipient</string>
+    <string name="send_text_error_message">Please make sure you enter a text message!</string>
+    
+    <string-array name="camera_choices">
+        <item>Take Picture</item>
+        <item>Take Video</item>
+        <item>Choose Picture</item>
+        <item>Choose Video</item>
+    </string-array>
 
 </resources>

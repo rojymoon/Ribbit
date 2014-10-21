@@ -34,59 +34,59 @@ public class RecipientsActivity extends ListActivity {
 	protected MenuItem mSendMenuItem;
 	protected Uri mMediaUri;
 	protected String mFileType;
+	protected String mTextMessage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_recipients);
-		
+
 		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		
+
 		mMediaUri = getIntent().getData();
 		mFileType = getIntent().getExtras().getString(ParseConstants.KEY_FILE_TYPE);
-		
+		mTextMessage = getIntent().getExtras().getString("textMessage");
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+
 		mCurrentUser = ParseUser.getCurrentUser();
 		mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
-		
+
 		setProgressBarIndeterminateVisibility(true);
-		
+
 		ParseQuery<ParseUser> query = mFriendsRelation.getQuery();
 		query.addAscendingOrder(ParseConstants.KEY_USERNAME);
-		
-		query.findInBackground(new FindCallback<ParseUser>() {
 
+		query.findInBackground(new FindCallback<ParseUser>() {
 			@Override
 			public void done(List<ParseUser> friends, ParseException e) {
 				setProgressBarIndeterminateVisibility(false);
-				
-				if(e == null){
+
+				if (e == null) {
 					mFriends = friends;
-					
+
 					String[] usernames = new String[mFriends.size()];
-					int i=0;
-					for(ParseUser user : mFriends){
+					int i = 0;
+					for (ParseUser user : mFriends) {
 						usernames[i] = user.getUsername();
 						i++;
 					}
 					ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-							getListView().getContext(), 
-							android.R.layout.simple_list_item_checked, 
+							getListView().getContext(),
+							android.R.layout.simple_list_item_checked,
 							usernames);
 					setListAdapter(adapter);
-				}
-				else{
+				} else {
 					Log.e(TAG, e.getMessage());
-					AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
+					AlertDialog.Builder builder = new AlertDialog.Builder(
+							RecipientsActivity.this);
 					builder.setMessage(e.getMessage())
-						.setTitle(R.string.error_title)
-						.setPositiveButton(android.R.string.ok, null);
+							.setTitle(R.string.error_title)
+							.setPositiveButton(android.R.string.ok, null);
 					AlertDialog dialog = builder.create();
 					dialog.show();
 				}
@@ -99,7 +99,7 @@ public class RecipientsActivity extends ListActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.recipients, menu);
 		mSendMenuItem = menu.getItem(0);
-		
+
 		return true;
 	}
 
@@ -111,91 +111,96 @@ public class RecipientsActivity extends ListActivity {
 		int id = item.getItemId();
 		if (id == R.id.action_send) {
 			ParseObject message = createMessage();
-			if(message == null){
-				//error
+			if (message == null) {
+				// error
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setMessage(R.string.error_selecting_file)
-					.setTitle(R.string.error_title)
-					.setPositiveButton(android.R.string.ok, null);
+						.setTitle(R.string.error_title)
+						.setPositiveButton(android.R.string.ok, null);
 				AlertDialog dialog = builder.create();
 				dialog.show();
-			}
-			else {
+			} else {
 				send(message);
 				finish();
 			}
+
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		
-		if(l.getCheckedItemCount() >0){
+
+		if (l.getCheckedItemCount() > 0) {
 			mSendMenuItem.setVisible(true);
-		}
-		else
+		} else
 			mSendMenuItem.setVisible(false);
-	}	
+	}
 
 	protected ParseObject createMessage() {
 		ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
 		message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
 		message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
 		message.put(ParseConstants.KEY_RECIPIENT_IDS, getRecipientsIds());
-		message.put(ParseConstants.KEY_FILE_TYPE, mFileType);		
-		
-		byte[] fileBytes = FileHelper.getByteArrayFromFile(this, mMediaUri);
-		
-		if(fileBytes == null){
-			return null;
-		}
-		else {
-			if(mFileType.equals(ParseConstants.TYPE_IMAGE)){
-				fileBytes = FileHelper.reduceImageForUpload(fileBytes);
+		message.put(ParseConstants.KEY_FILE_TYPE, mFileType);
+
+		if (mFileType.equals(ParseConstants.TYPE_TEXT)) {
+			//message.put(ParseConstants.KEY_FILE, mTextMessage);
+			message.put(ParseConstants.KEY_TEXT_MESSAGE, mTextMessage);
+		} else {
+			byte[] fileBytes = FileHelper.getByteArrayFromFile(this, mMediaUri);
+
+			if (fileBytes == null) {
+				return null;
+			} else {
+				if (mFileType.equals(ParseConstants.TYPE_IMAGE)) {
+					fileBytes = FileHelper.reduceImageForUpload(fileBytes);
+				}
+
+				String fileName = FileHelper.getFileName(this, mMediaUri,
+						mFileType);
+				ParseFile file = new ParseFile(fileName, fileBytes);
+				message.put(ParseConstants.KEY_FILE, file);
 			}
-			
-			String fileName = FileHelper.getFileName(this, mMediaUri, mFileType);
-			ParseFile file = new ParseFile(fileName, fileBytes);
-			message.put(ParseConstants.KEY_FILE, file);
-			
-			return message;
 		}
+
+		return message;
 	}
-	
+
 	protected ArrayList<String> getRecipientsIds() {
 		ArrayList<String> recipientIds = new ArrayList<String>();
-		for(int i=0; i<getListView().getCount(); i++){
-			if(getListView().isItemChecked(i)){
-				recipientIds.add(mFriends.get(i).getObjectId()); //Add the id of the user at the current pos.
+		for (int i = 0; i < getListView().getCount(); i++) {
+			if (getListView().isItemChecked(i)) {
+				recipientIds.add(mFriends.get(i).getObjectId()); // Add the id of the user at the current pos.																
 			}
-		}		
+		}
 		return recipientIds;
 	}
 
 	protected void send(ParseObject message) {
 		message.saveInBackground(new SaveCallback() {
-			
 			@Override
 			public void done(ParseException e) {
-				if(e == null){
-					//Success!
-					Toast.makeText(RecipientsActivity.this, R.string.success_message, Toast.LENGTH_LONG).show();
+				if (e == null) {
+					// Success!
+					Toast.makeText(RecipientsActivity.this,
+							R.string.success_message, Toast.LENGTH_LONG).show();
+				} else {
+					if(!isFinishing()){
+						AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);							
+						builder.setMessage(R.string.error_sending_message)
+								.setTitle(R.string.error_title)
+								.setPositiveButton(android.R.string.ok, null);
+						AlertDialog dialog = builder.create();
+						dialog.show();
+						Log.e(TAG, e.getMessage());
+					}
+					else 
+						Toast.makeText(RecipientsActivity.this, R.string.error_sending_message, Toast.LENGTH_LONG).show();
 				}
-				else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
-					builder.setMessage(R.string.error_sending_message)
-						.setTitle(R.string.error_title)
-						.setPositiveButton(android.R.string.ok, null);
-					AlertDialog dialog = builder.create();
-					dialog.show();
-				}
-				
 			}
 		});
-		
 	}
-
 }

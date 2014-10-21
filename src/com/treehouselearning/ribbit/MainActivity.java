@@ -237,7 +237,9 @@ public class MainActivity extends FragmentActivity implements
 				}
 				
 				Log.i(TAG, "mMediaUri: " + mMediaUri);
-				if(video_request_flag == true){
+			}
+			if((requestCode == PICK_VIDEO_PHOTO_REQUEST && video_request_flag == true) || 
+					requestCode == TAKE_VIDEO_REQUEST){
 					//make sure the file is less than 10 MB
 					int fileSize = 0;
 					InputStream inputStream = null;
@@ -267,7 +269,7 @@ public class MainActivity extends FragmentActivity implements
 					}
 					video_request_flag = false;
 				}				
-			}
+			
 			else {
 				Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 				mediaScanIntent.setData(mMediaUri);
@@ -331,6 +333,10 @@ public class MainActivity extends FragmentActivity implements
 			builder.setItems(R.array.camera_choices, mDialogListener);
 			AlertDialog dialog = builder.create();
 			dialog.show();
+			break;
+		case R.id.action_chat:
+			Intent sendTextIntent = new Intent(this, SendTextActivity.class);
+			startActivity(sendTextIntent);
 			break;
 		}
 
