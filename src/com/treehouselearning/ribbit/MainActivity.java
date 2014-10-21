@@ -45,7 +45,7 @@ public class MainActivity extends FragmentActivity implements
 	
 	public static final int FILE_SIZE_LIMIT = 1024*1024*10; //10 MB
 
-	protected Uri mMediaUri;
+	protected Uri mMediaUri;	
 
 	protected DialogInterface.OnClickListener mDialogListener = new DialogInterface.OnClickListener() {
 		@Override
