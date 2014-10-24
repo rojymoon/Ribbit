@@ -31,16 +31,14 @@ public class ViewImageActivity extends Activity {
 			Picasso.with(this).load(imageUri).error(R.drawable.ic_action_picture).placeholder(R.drawable.ic_action_picture).into(imageView);
 			
 			//setProgressBarIndeterminateVisibility(false);
-			/*
+			
 			Timer timer = new Timer();
-		    timer.schedule(new TimerTask()
-		    {
-		        @Override
-		        public void run()
-		        {
-		            finish();
-		        }
-		    }, 10*1000);*/
+			timer.schedule(new TimerTask() {				
+				@Override
+				public void run() {
+					finish();
+				}
+			}, 10*1000);
 		}
 		else {
 			Log.i("textMessage", "textttt");
