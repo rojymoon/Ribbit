@@ -35,14 +35,15 @@ public final class R {
         public static final int ic_launcher=0x7f020006;
     }
     public static final class id {
-        public static final int action_camera=0x7f090016;
-        public static final int action_chat=0x7f090017;
-        public static final int action_edit_friends=0x7f090014;
-        public static final int action_logout=0x7f090015;
-        public static final int action_send=0x7f090018;
-        public static final int action_settings=0x7f090013;
+        public static final int action_camera=0x7f090017;
+        public static final int action_chat=0x7f090018;
+        public static final int action_edit_friends=0x7f090015;
+        public static final int action_logout=0x7f090016;
+        public static final int action_send=0x7f090019;
+        public static final int action_settings=0x7f090014;
         public static final int buttonsLayout=0x7f090006;
         public static final int chooseRecipientButton=0x7f09000c;
+        public static final int createdAtLabel=0x7f090013;
         public static final int emailField=0x7f09000e;
         public static final int emailRecoveryField=0x7f090001;
         public static final int enterEmailText=0x7f090000;

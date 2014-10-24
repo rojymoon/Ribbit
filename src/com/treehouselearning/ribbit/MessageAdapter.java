@@ -32,6 +32,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 			holder = new ViewHolder();
 			holder.iconImageView = (ImageView) convertView.findViewById(R.id.messageIcon);
 			holder.nameLabel = (TextView) convertView.findViewById(R.id.senderLabel);
+			holder.createdAtLabel = (TextView) convertView.findViewById(R.id.createdAtLabel);
 			convertView.setTag(holder);
 		}
 		else {
@@ -49,14 +50,18 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 		else {
 			holder.iconImageView.setImageResource(R.drawable.ic_action_chat_holo_light);
 		}
-		holder.nameLabel.setText(message.getString(ParseConstants.KEY_SENDER_NAME));
 		
+		holder.nameLabel.setText(message.getString(ParseConstants.KEY_SENDER_NAME));
+		holder.createdAtLabel.setText(TimeUtil.getTimeAgo(message.getCreatedAt().getTime(), mContext));
+		
+		//Log.i("Elapsed Time: ", TimeUtil.getTimeAgo(message.getCreatedAt().getTime(), mContext));
 		return convertView;
 	}
 	
 	private static class ViewHolder{
 		ImageView iconImageView;
 		TextView nameLabel;
+		TextView createdAtLabel;
 	}
 
 }

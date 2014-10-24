@@ -47,12 +47,12 @@ public class InboxFragment extends ListFragment {
 					// We found messages!
 					mMessages = messages;
 					
-					String[] usernames = new String[mMessages.size()];
+					/*String[] usernames = new String[mMessages.size()];
 					int i=0;
 					for(ParseObject message : mMessages){
 						usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
 						i++;
-					}
+					}*/
 					MessageAdapter adapter = new MessageAdapter(getListView().getContext(), mMessages);
 					setListAdapter(adapter);
 				}
