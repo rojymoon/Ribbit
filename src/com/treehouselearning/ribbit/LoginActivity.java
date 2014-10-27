@@ -1,5 +1,6 @@
 package com.treehouselearning.ribbit;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -29,17 +30,7 @@ public class LoginActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_login);
 
-		/*mSignUpTextView = (TextView) findViewById(R.id.signUpText);
-		mSignUpTextView.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(LoginActivity.this,
-						SignUpActivity.class);
-				startActivity(intent);
-
-			}
-		});*/
+		getActionBar().hide();
 		
 		mForgotPassTextView = (TextView) findViewById(R.id.forgotPasswordText);
 		mForgotPassTextView.setOnClickListener(new View.OnClickListener() {

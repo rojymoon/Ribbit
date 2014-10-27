@@ -36,7 +36,7 @@
         android:layout_toRightOf="@+id/messageIcon"
         android:layout_toEndOf="@+id/messageIcon"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#D87093"
+        android:textColor="@color/pale_violet_red"
         android:paddingTop="@dimen/message_list_item_vertical_margin" />
 
 </RelativeLayout>
