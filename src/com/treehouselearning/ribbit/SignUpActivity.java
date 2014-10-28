@@ -5,9 +5,9 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -19,18 +19,30 @@ public class SignUpActivity extends Activity {
 	protected EditText mPassword;
 	protected EditText mEmail;
 	protected Button mSignUpButton;
+	protected Button mCancelButton;
+	protected ProgressBar mProgressBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_sign_up);
 		
 		getActionBar().hide();
 		
+		mProgressBar = (ProgressBar) findViewById(R.id.progressBar1);
 		mUsername = (EditText) findViewById(R.id.usernameField);
 		mPassword = (EditText) findViewById(R.id.passwordField);
 		mEmail = (EditText) findViewById(R.id.emailField);
+		
+		mCancelButton = (Button) findViewById(R.id.cancelButton);
+		mCancelButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 		
 		mSignUpButton = (Button) findViewById(R.id.signupButton);
 		mSignUpButton.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +67,8 @@ public class SignUpActivity extends Activity {
 				}
 				else{
 					//Create the new user!
-					setProgressBarIndeterminateVisibility(true);
+					//setProgressBarIndeterminateVisibility(true);
+					mProgressBar.setVisibility(View.VISIBLE);
 					
 					ParseUser newUser = new ParseUser();
 					newUser.setUsername(username);
@@ -66,7 +79,8 @@ public class SignUpActivity extends Activity {
 						
 						@Override
 						public void done(ParseException e) {
-							setProgressBarIndeterminateVisibility(false);
+							//setProgressBarIndeterminateVisibility(false);
+							mProgressBar.setVisibility(View.INVISIBLE);
 							
 							if(e == null){
 								//Success!

@@ -1,14 +1,13 @@
 package com.treehouselearning.ribbit;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.parse.LogInCallback;
@@ -20,17 +19,19 @@ public class LoginActivity extends Activity {
 	protected EditText mUsername;
 	protected EditText mPassword;
 	protected Button mLoginButton;
-	protected Button mSignUpButton;
 	protected TextView mSignUpTextView;
 	protected TextView mForgotPassTextView;
+	protected ProgressBar mProgressBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_login);
 
 		getActionBar().hide();
+		
+		mProgressBar = (ProgressBar) findViewById(R.id.progressBar1);
 		
 		mForgotPassTextView = (TextView) findViewById(R.id.forgotPasswordText);
 		mForgotPassTextView.setOnClickListener(new View.OnClickListener() {
@@ -43,9 +44,9 @@ public class LoginActivity extends Activity {
 
 			}
 		});
-
-		mSignUpButton = (Button) findViewById(R.id.signUpButton);
-		mSignUpButton.setOnClickListener(new View.OnClickListener() {
+		
+		mSignUpTextView = (TextView) findViewById(R.id.signUpText);
+		mSignUpTextView.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -80,14 +81,16 @@ public class LoginActivity extends Activity {
 					dialog.show();
 				} else {
 					// Login
-					setProgressBarIndeterminateVisibility(true);
+					//setProgressBarIndeterminateVisibility(true);
+					mProgressBar.setVisibility(View.VISIBLE);
 					ParseUser.logInInBackground(username, password,
 							new LogInCallback() {
 								@Override
 								public void done(ParseUser user,
 										ParseException e) {
 
-									setProgressBarIndeterminateVisibility(false);
+									//setProgressBarIndeterminateVisibility(false);
+									mProgressBar.setVisibility(View.INVISIBLE);
 									// if(user != null){
 									if (e == null) {
 										// Success! The user is logged in.

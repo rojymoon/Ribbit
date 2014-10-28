@@ -14,7 +14,8 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/message_list_item_vertical_margin"
         android:paddingBottom="@dimen/message_list_item_vertical_margin"
-        android:src="@drawable/ic_action_picture" />
+        android:src="@drawable/ic_action_picture"
+        android:contentDescription="@string/content_desc_sender_image" />
 
     <TextView
         android:id="@+id/senderLabel"

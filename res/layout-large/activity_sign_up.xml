@@ -12,7 +12,9 @@
 
     <LinearLayout
         android:id="@+id/editTextLayout"
-        style="@style/AuthFieldContainer" >
+        style="@style/AuthFieldContainer"       
+        android:layout_width="400dp"
+        android:layout_centerHorizontal="true" >
 
         <EditText
             android:id="@+id/usernameField"
@@ -48,25 +50,30 @@
         android:id="@+id/signupButton"
         style="@style/AuthButton"
         android:text="@string/sign_up_button_label"        
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/editTextLayout"
+        android:layout_alignStart="@+id/editTextLayout"
         android:layout_below="@+id/editTextLayout"
         android:layout_toLeftOf="@+id/buttonDivider"
         android:layout_toStartOf="@+id/buttonDivider"
         android:layout_marginRight="0dp"
-        android:layout_marginEnd="0dp" />
+        android:layout_marginEnd="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp" />
     
     <Button
         android:id="@+id/cancelButton"
         style="@style/AuthButton"
         android:text="@string/cancel_button_label"        
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignRight="@+id/editTextLayout"
+        android:layout_alignEnd="@+id/editTextLayout"
         android:layout_below="@+id/editTextLayout"
         android:layout_toRightOf="@+id/buttonDivider"
         android:layout_toEndOf="@+id/buttonDivider"
         android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp" />
+        android:layout_marginStart="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp" />
+    
 
     <ProgressBar
         android:id="@+id/progressBar1"
