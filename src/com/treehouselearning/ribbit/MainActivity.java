@@ -218,7 +218,8 @@ public class MainActivity extends FragmentActivity implements
 			// the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
 			actionBar.addTab(actionBar.newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
+					.setContentDescription(mSectionsPagerAdapter.getPageTitle(i))
+					.setIcon(mSectionsPagerAdapter.getIcon(i))
 					.setTabListener(this));
 		}
 	}
