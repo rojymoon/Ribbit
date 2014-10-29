@@ -2,16 +2,14 @@ package com.treehouselearning.ribbit.adapters;
 
 import java.util.Locale;
 
-import com.treehouselearning.ribbit.R;
-import com.treehouselearning.ribbit.R.drawable;
-import com.treehouselearning.ribbit.R.string;
-import com.treehouselearning.ribbit.ui.FriendsFragment;
-import com.treehouselearning.ribbit.ui.InboxFragment;
-
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.ui.FriendsFragment;
+import com.treehouselearning.ribbit.ui.InboxFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one

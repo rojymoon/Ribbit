@@ -55,7 +55,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.com.treehouselearning.ribbit.ui.EditFriendsActivity"
+            android:name="com.treehouselearning.ribbit.ui.EditFriendsActivity"
             android:label="@string/title_activity_edit_friends"
             android:parentActivityName="com.treehouselearning.ribbit.ui.MainActivity"
             android:screenOrientation="portrait" >

@@ -1,11 +1,5 @@
 package com.treehouselearning.ribbit.ui;
 
-import com.treehouselearning.ribbit.R;
-import com.treehouselearning.ribbit.R.id;
-import com.treehouselearning.ribbit.R.layout;
-import com.treehouselearning.ribbit.R.string;
-import com.treehouselearning.ribbit.utils.ParseConstants;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -14,6 +8,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.utils.ParseConstants;
 
 public class SendTextActivity extends Activity {
 	

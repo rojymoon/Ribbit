@@ -25,10 +25,6 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.treehouselearning.ribbit.R;
-import com.treehouselearning.ribbit.R.id;
-import com.treehouselearning.ribbit.R.layout;
-import com.treehouselearning.ribbit.R.menu;
-import com.treehouselearning.ribbit.R.string;
 import com.treehouselearning.ribbit.utils.FileHelper;
 import com.treehouselearning.ribbit.utils.ParseConstants;
 

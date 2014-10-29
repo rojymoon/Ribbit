@@ -13,9 +13,6 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.treehouselearning.ribbit.R;
-import com.treehouselearning.ribbit.R.id;
-import com.treehouselearning.ribbit.R.layout;
-import com.treehouselearning.ribbit.R.string;
 
 public class SignUpActivity extends Activity {
 	

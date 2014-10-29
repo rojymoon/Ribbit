@@ -7,15 +7,11 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.treehouselearning.ribbit.R;
-import com.treehouselearning.ribbit.R.drawable;
-import com.treehouselearning.ribbit.R.id;
-import com.treehouselearning.ribbit.R.layout;
 import com.treehouselearning.ribbit.utils.ParseConstants;
 
 public class ViewImageActivity extends Activity {

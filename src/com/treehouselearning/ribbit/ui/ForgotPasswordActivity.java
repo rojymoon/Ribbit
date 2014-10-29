@@ -13,8 +13,6 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 import com.treehouselearning.ribbit.R;
-import com.treehouselearning.ribbit.R.id;
-import com.treehouselearning.ribbit.R.layout;
 
 public class ForgotPasswordActivity extends Activity {
 

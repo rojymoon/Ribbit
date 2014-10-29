@@ -1,10 +1,8 @@
 package com.treehouselearning.ribbit.adapters;
 
-import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +12,6 @@ import android.widget.TextView;
 
 import com.parse.ParseObject;
 import com.treehouselearning.ribbit.R;
-import com.treehouselearning.ribbit.R.drawable;
-import com.treehouselearning.ribbit.R.id;
-import com.treehouselearning.ribbit.R.layout;
 import com.treehouselearning.ribbit.utils.ParseConstants;
 import com.treehouselearning.ribbit.utils.TimeUtil;
 
