@@ -1,4 +1,4 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +12,10 @@ import android.widget.ProgressBar;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.R.id;
+import com.treehouselearning.ribbit.R.layout;
+import com.treehouselearning.ribbit.R.string;
 
 public class SignUpActivity extends Activity {
 	

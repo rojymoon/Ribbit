@@ -1,4 +1,4 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,6 +28,14 @@ import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.R.array;
+import com.treehouselearning.ribbit.R.id;
+import com.treehouselearning.ribbit.R.layout;
+import com.treehouselearning.ribbit.R.menu;
+import com.treehouselearning.ribbit.R.string;
+import com.treehouselearning.ribbit.adapters.SectionsPagerAdapter;
+import com.treehouselearning.ribbit.utils.ParseConstants;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {

@@ -18,9 +18,14 @@ public final class R {
         public static final int background_purple=0x7f040000;
         public static final int focused_prurple_button=0x7f040006;
         public static final int light_grey=0x7f040002;
+        public static final int light_purple_background=0x7f040008;
         public static final int light_purple_button=0x7f040004;
         public static final int pale_violet_red=0x7f040001;
         public static final int pressed_prurple_button=0x7f040005;
+        public static final int swipeRefresh1=0x7f040009;
+        public static final int swipeRefresh2=0x7f04000a;
+        public static final int swipeRefresh3=0x7f04000b;
+        public static final int swipeRefresh4=0x7f04000c;
         public static final int text_color=0x7f040007;
     }
     public static final class dimen {
@@ -33,10 +38,13 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
+        public static final int inbox_horizontal_margin=0x7f050006;
+        public static final int inbox_vertical_margin=0x7f050007;
         public static final int login_horizontal_padding=0x7f050004;
         public static final int login_vertical_margin=0x7f050003;
         public static final int login_vertical_padding=0x7f050005;
         public static final int message_list_item_vertical_margin=0x7f050002;
+        public static final int message_vertical_padding=0x7f050008;
     }
     public static final class drawable {
         public static final int ab_background_textured_ribbit=0x7f020000;
@@ -105,16 +113,15 @@ public final class R {
         public static final int tab_unselected_ribbit=0x7f02003f;
     }
     public static final class id {
-        public static final int action_camera=0x7f0a001b;
-        public static final int action_chat=0x7f0a001c;
-        public static final int action_edit_friends=0x7f0a0019;
-        public static final int action_logout=0x7f0a001a;
-        public static final int action_send=0x7f0a001d;
+        public static final int action_camera=0x7f0a001c;
+        public static final int action_chat=0x7f0a001d;
+        public static final int action_edit_friends=0x7f0a001a;
+        public static final int action_logout=0x7f0a001b;
+        public static final int action_send=0x7f0a001e;
         public static final int backgroundImage=0x7f0a0013;
         public static final int buttonDivider=0x7f0a000e;
         public static final int cancelButton=0x7f0a0010;
         public static final int chooseRecipientButton=0x7f0a000c;
-        public static final int createdAtLabel=0x7f0a0018;
         public static final int editTextLayout=0x7f0a0001;
         public static final int emailField=0x7f0a000d;
         public static final int emailRecoveryField=0x7f0a0002;
@@ -122,17 +129,19 @@ public final class R {
         public static final int forgotPasswordText=0x7f0a0008;
         public static final int imageView=0x7f0a0011;
         public static final int loginButton=0x7f0a0006;
-        public static final int messageIcon=0x7f0a0016;
+        public static final int messageIcon=0x7f0a0017;
         public static final int pager=0x7f0a000a;
         public static final int passwordField=0x7f0a0005;
         public static final int progressBar1=0x7f0a0009;
-        public static final int senderLabel=0x7f0a0017;
+        public static final int senderLabel=0x7f0a0018;
         public static final int signUpText=0x7f0a0007;
         public static final int signupButton=0x7f0a000f;
         public static final int submitButton=0x7f0a0003;
         public static final int subtitle=0x7f0a0015;
+        public static final int swipeRefreshLayout=0x7f0a0016;
         public static final int textField=0x7f0a000b;
         public static final int textMessageView=0x7f0a0012;
+        public static final int timeLabel=0x7f0a0019;
         public static final int title=0x7f0a0014;
         public static final int usernameField=0x7f0a0004;
     }
@@ -161,7 +170,7 @@ public final class R {
         public static final int choose_recipient_button_label=0x7f06002d;
         public static final int content_desc_background=0x7f060030;
         public static final int content_desc_button_divider=0x7f060034;
-        public static final int content_desc_sender_image=0x7f060032;
+        public static final int content_desc_message_icon=0x7f060032;
         public static final int email_hint=0x7f06000e;
         public static final int empty_friends_label=0x7f06001a;
         public static final int empty_inbox_label=0x7f060019;
@@ -210,11 +219,11 @@ public final class R {
         public static final int video_file_size_warning=0x7f060021;
     }
     public static final class style {
-        public static final int ActionBar_Solid_Ribbit=0x7f080002;
-        public static final int ActionBar_Solid_Ribbit_TitleTextStyle=0x7f080003;
-        public static final int ActionBar_Transparent_Ribbit=0x7f080004;
-        public static final int ActionBarTabStyle_Ribbit=0x7f080007;
-        public static final int ActionButton_CloseMode_Ribbit=0x7f08000a;
+        public static final int ActionBar_Solid_Ribbit=0x7f080003;
+        public static final int ActionBar_Solid_Ribbit_TitleTextStyle=0x7f080004;
+        public static final int ActionBar_Transparent_Ribbit=0x7f080005;
+        public static final int ActionBarTabStyle_Ribbit=0x7f080008;
+        public static final int ActionButton_CloseMode_Ribbit=0x7f08000b;
         /** 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
@@ -227,22 +236,23 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080013;
-        public static final int AuthBackground=0x7f08000c;
-        public static final int AuthBackgroundImage=0x7f08000d;
-        public static final int AuthButton=0x7f080012;
-        public static final int AuthEditText=0x7f080011;
-        public static final int AuthFieldContainer=0x7f080010;
-        public static final int AuthTitle=0x7f08000e;
-        public static final int AuthTitle_AuthSubtitle=0x7f08000f;
-        public static final int DropDownListView_Ribbit=0x7f080006;
-        public static final int DropDownNav_Ribbit=0x7f080008;
-        public static final int PopupMenu_Ribbit=0x7f080005;
-        public static final int ProgressBar_Ribbit=0x7f080009;
+        public static final int AppBaseTheme=0x7f080014;
+        public static final int AuthBackground=0x7f08000d;
+        public static final int AuthBackgroundImage=0x7f08000e;
+        public static final int AuthButton=0x7f080013;
+        public static final int AuthEditText=0x7f080012;
+        public static final int AuthFieldContainer=0x7f080011;
+        public static final int AuthTitle=0x7f08000f;
+        public static final int AuthTitle_AuthSubtitle=0x7f080010;
+        public static final int DropDownListView_Ribbit=0x7f080007;
+        public static final int DropDownNav_Ribbit=0x7f080009;
+        public static final int PopupMenu_Ribbit=0x7f080006;
+        public static final int ProgressBar_Ribbit=0x7f08000a;
         public static final int Theme_Ribbit=0x7f080000;
-        public static final int Theme_Ribbit_OverFlow=0x7f080001;
+        public static final int Theme_Ribbit_LightPurpleBackground=0x7f080001;
+        public static final int Theme_Ribbit_OverFlow=0x7f080002;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Ribbit_Widget=0x7f08000b;
+        public static final int Theme_Ribbit_Widget=0x7f08000c;
     }
 }

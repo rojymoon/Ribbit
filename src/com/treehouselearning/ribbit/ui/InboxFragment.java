@@ -1,30 +1,15 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.ui;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
-import org.json.JSONObject;
-
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.ListFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -36,18 +21,31 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.adapters.MessageAdapter;
+import com.treehouselearning.ribbit.utils.ParseConstants;
 
 public class InboxFragment extends ListFragment {
 
 	protected List<ParseObject> mMessages;
-	private static final String LIST_STATE = "listState";
-	private Parcelable mListState = null;
+	protected SwipeRefreshLayout mSwipeRefreshLayout;
+	//private static final String LIST_STATE = "listState";
+	//private Parcelable mListState = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_inbox, container,
 				false);
+		
+		mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+		mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+		mSwipeRefreshLayout.setColorScheme(
+				R.color.swipeRefresh1, 
+				R.color.swipeRefresh2, 
+				R.color.swipeRefresh3, 
+				R.color.swipeRefresh4);
+		
 		return rootView;
 	}
 
@@ -56,6 +54,10 @@ public class InboxFragment extends ListFragment {
 		super.onResume();
 		getActivity().setProgressBarIndeterminateVisibility(true);
 
+		retrieveMessages();
+	}
+
+	private void retrieveMessages() {
 		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
 				ParseConstants.CLASS_MESSAGES);
 		query.whereEqualTo(ParseConstants.KEY_RECIPIENT_IDS, ParseUser
@@ -65,6 +67,10 @@ public class InboxFragment extends ListFragment {
 			@Override
 			public void done(List<ParseObject> messages, ParseException e) {
 				getActivity().setProgressBarIndeterminateVisibility(false);
+				
+				if(mSwipeRefreshLayout.isRefreshing()) {
+					mSwipeRefreshLayout.setRefreshing(false);
+				}
 
 				if (e == null) {
 					// We found messages!
@@ -142,11 +148,18 @@ public class InboxFragment extends ListFragment {
 		}
 	}	
 	
-	private class CallRestApi extends AsyncTask<String, String, String> {
-		/**
+	protected OnRefreshListener mOnRefreshListener = new OnRefreshListener() {		
+		@Override
+		public void onRefresh() {			
+			retrieveMessages();
+		}
+	};
+	
+/*	private class CallRestApi extends AsyncTask<String, String, String> {
+		*//**
 		 * The system calls this to perform work in a worker thread and delivers
 		 * it the parameters given to AsyncTask.execute()
-		 */
+		 *//*
 		protected String doInBackground(String... urls) {
 
 			//String urlString = urls[0]; // URL to call
@@ -173,7 +186,7 @@ public class InboxFragment extends ListFragment {
 				e.printStackTrace();
 			}
 
-			/*
+			
 			 * // HTTP Get try { HttpParams httpParams = new BasicHttpParams();
 			 * HttpClient client = new DefaultHttpClient(httpParams); HttpPost
 			 * httpost = new
@@ -186,17 +199,17 @@ public class InboxFragment extends ListFragment {
 			 * JSONObject(); // /HttpResponse response = null; } catch
 			 * (Exception e ) { System.out.println(e.getMessage()); return
 			 * e.getMessage(); }
-			 */
+			 
 			return resultToDisplay;
 		}
 
-		/**
+		*//**
 		 * The system calls this to perform work in the UI thread and delivers
 		 * the result from doInBackground()
-		 */
+		 *//*
 		protected void onPostExecute(String result) {
 			// show toast after deletion
 		}
-	}
+	}*/
 
 }

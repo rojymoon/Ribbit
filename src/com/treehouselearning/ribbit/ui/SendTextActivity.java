@@ -1,4 +1,10 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.ui;
+
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.R.id;
+import com.treehouselearning.ribbit.R.layout;
+import com.treehouselearning.ribbit.R.string;
+import com.treehouselearning.ribbit.utils.ParseConstants;
 
 import android.app.Activity;
 import android.app.AlertDialog;

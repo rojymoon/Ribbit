@@ -1,4 +1,4 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,6 +13,10 @@ import android.widget.TextView;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.R.id;
+import com.treehouselearning.ribbit.R.layout;
+import com.treehouselearning.ribbit.R.string;
 
 public class LoginActivity extends Activity {
 

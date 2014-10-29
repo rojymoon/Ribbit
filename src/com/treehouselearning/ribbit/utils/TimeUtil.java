@@ -1,4 +1,6 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.utils;
+
+import com.treehouselearning.ribbit.BuildConfig;
 
 import android.content.Context;
 

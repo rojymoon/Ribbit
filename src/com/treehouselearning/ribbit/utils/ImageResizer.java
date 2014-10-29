@@ -1,4 +1,4 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.utils;
 
 import java.io.ByteArrayOutputStream;
 

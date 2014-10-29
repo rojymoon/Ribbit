@@ -1,4 +1,4 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,13 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.R.id;
+import com.treehouselearning.ribbit.R.layout;
+import com.treehouselearning.ribbit.R.menu;
+import com.treehouselearning.ribbit.R.string;
+import com.treehouselearning.ribbit.utils.FileHelper;
+import com.treehouselearning.ribbit.utils.ParseConstants;
 
 public class RecipientsActivity extends ListActivity {
 	public static final String TAG = RecipientsActivity.class.getSimpleName();

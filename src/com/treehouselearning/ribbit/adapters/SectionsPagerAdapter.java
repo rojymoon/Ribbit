@@ -1,6 +1,12 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.adapters;
 
 import java.util.Locale;
+
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.R.drawable;
+import com.treehouselearning.ribbit.R.string;
+import com.treehouselearning.ribbit.ui.FriendsFragment;
+import com.treehouselearning.ribbit.ui.InboxFragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

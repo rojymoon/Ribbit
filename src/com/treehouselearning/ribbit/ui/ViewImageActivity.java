@@ -1,4 +1,4 @@
-package com.treehouselearning.ribbit;
+package com.treehouselearning.ribbit.ui;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,6 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.R.drawable;
+import com.treehouselearning.ribbit.R.id;
+import com.treehouselearning.ribbit.R.layout;
+import com.treehouselearning.ribbit.utils.ParseConstants;
 
 public class ViewImageActivity extends Activity {
 

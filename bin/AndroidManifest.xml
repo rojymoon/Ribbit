@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Ribbit" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.treehouselearning.ribbit.ui.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTop" >
@@ -34,60 +34,61 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.treehouselearning.ribbit.ui.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.treehouselearning.ribbit.ui.SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:parentActivityName=".LoginActivity"
+            android:parentActivityName="com.treehouselearning.ribbit.ui.LoginActivity"
             android:screenOrientation="portrait" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
+                android:value="com.treehouselearning.ribbit.ui.LoginActivity" />
         </activity>
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name="com.treehouselearning.ribbit.ui.ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".EditFriendsActivity"
+            android:name="com.com.treehouselearning.ribbit.ui.EditFriendsActivity"
             android:label="@string/title_activity_edit_friends"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.treehouselearning.ribbit.ui.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.treehouselearning.ribbit.MainActivity" />
+                android:value="com.treehouselearning.ribbit.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".RecipientsActivity"
+            android:name="com.treehouselearning.ribbit.ui.RecipientsActivity"
             android:label="@string/title_activity_recipients"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.treehouselearning.ribbit.ui.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.treehouselearning.ribbit.MainActivity" />
+                android:name="com.treehouselearning.ribbit.ui.SendTextActivityupport.PARENT_ACTIVITY"
+                android:value="com.treehouselearning.ribbit.ui.MainActivity" />
         </activity>
         <activity
             android:name=".SendTextActivity"
             android:label="@string/title_activity_send_text"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.treehouselearning.ribbit.ui.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.treehouselearning.ribbit.MainActivity" />
+                android:name="com.treehouselearning.ribbit.ui.SendTextActivityupport.PARENT_ACTIVITY"
+                android:value="com.treehouselearning.ribbit.ui.MainActivity" />
         </activity>
         <activity
             android:name=".ViewImageActivity"
             android:label="@string/title_activity_view_image"
-            android:parentActivityName=".MainActivity" android:screenOrientation="portrait">
+            android:parentActivityName="com.treehouselearning.ribbit.ui.MainActivity"
+             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.treehouselearning.ribbit.MainActivity" />
+                android:value="com.treehouselearning.ribbit.ui.MainActivity" />
         </activity>
     </application>
 
