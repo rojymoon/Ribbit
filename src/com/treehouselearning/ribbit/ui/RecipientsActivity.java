@@ -3,8 +3,8 @@ package com.treehouselearning.ribbit.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -25,10 +29,11 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.adapters.UserAdapter;
 import com.treehouselearning.ribbit.utils.FileHelper;
 import com.treehouselearning.ribbit.utils.ParseConstants;
 
-public class RecipientsActivity extends ListActivity {
+public class RecipientsActivity extends Activity {
 	public static final String TAG = RecipientsActivity.class.getSimpleName();
 
 	protected List<ParseUser> mFriends;
@@ -38,17 +43,25 @@ public class RecipientsActivity extends ListActivity {
 	protected Uri mMediaUri;
 	protected String mFileType;
 	protected String mTextMessage;
+	protected GridView mGridView;
+	protected TextView emptyTextView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		setContentView(R.layout.activity_recipients);
+		setContentView(R.layout.user_grid);
 
-		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		mGridView = (GridView) findViewById(R.id.friendsGrid);
+		mGridView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		mGridView.setOnItemClickListener(mOnItemClickListener);
+		
+		emptyTextView = (TextView) findViewById(android.R.id.empty);
+		mGridView.setEmptyView(emptyTextView);
 
 		mMediaUri = getIntent().getData();
-		mFileType = getIntent().getExtras().getString(ParseConstants.KEY_FILE_TYPE);
+		mFileType = getIntent().getExtras().getString(
+				ParseConstants.KEY_FILE_TYPE);
 		mTextMessage = getIntent().getExtras().getString("textMessage");
 	}
 
@@ -57,7 +70,8 @@ public class RecipientsActivity extends ListActivity {
 		super.onResume();
 
 		mCurrentUser = ParseUser.getCurrentUser();
-		mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
+		mFriendsRelation = mCurrentUser
+				.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
 		setProgressBarIndeterminateVisibility(true);
 
@@ -78,11 +92,14 @@ public class RecipientsActivity extends ListActivity {
 						usernames[i] = user.getUsername();
 						i++;
 					}
-					ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-							getListView().getContext(),
-							android.R.layout.simple_list_item_checked,
-							usernames);
-					setListAdapter(adapter);
+
+					if (mGridView.getAdapter() == null) {
+						UserAdapter adapter = new UserAdapter(
+								RecipientsActivity.this, mFriends);
+						mGridView.setAdapter(adapter);
+					} else {
+						((UserAdapter) mGridView.getAdapter()).refill(mFriends);
+					}
 				} else {
 					Log.e(TAG, e.getMessage());
 					AlertDialog.Builder builder = new AlertDialog.Builder(
@@ -132,25 +149,17 @@ public class RecipientsActivity extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-
-		if (l.getCheckedItemCount() > 0) {
-			mSendMenuItem.setVisible(true);
-		} else
-			mSendMenuItem.setVisible(false);
-	}
-
 	protected ParseObject createMessage() {
 		ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
-		message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
-		message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
+		message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser()
+				.getObjectId());
+		message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser()
+				.getUsername());
 		message.put(ParseConstants.KEY_RECIPIENT_IDS, getRecipientsIds());
 		message.put(ParseConstants.KEY_FILE_TYPE, mFileType);
 
 		if (mFileType.equals(ParseConstants.TYPE_TEXT)) {
-			//message.put(ParseConstants.KEY_FILE, mTextMessage);
+			// message.put(ParseConstants.KEY_FILE, mTextMessage);
 			message.put(ParseConstants.KEY_TEXT_MESSAGE, mTextMessage);
 		} else {
 			byte[] fileBytes = FileHelper.getByteArrayFromFile(this, mMediaUri);
@@ -174,9 +183,9 @@ public class RecipientsActivity extends ListActivity {
 
 	protected ArrayList<String> getRecipientsIds() {
 		ArrayList<String> recipientIds = new ArrayList<String>();
-		for (int i = 0; i < getListView().getCount(); i++) {
-			if (getListView().isItemChecked(i)) {
-				recipientIds.add(mFriends.get(i).getObjectId()); // Add the id of the user at the current pos.																
+		for (int i = 0; i < mGridView.getCount(); i++) {
+			if (mGridView.isItemChecked(i)) {
+				recipientIds.add(mFriends.get(i).getObjectId()); // Add the id of the user at the current pos.
 			}
 		}
 		return recipientIds;
@@ -191,19 +200,44 @@ public class RecipientsActivity extends ListActivity {
 					Toast.makeText(RecipientsActivity.this,
 							R.string.success_message, Toast.LENGTH_LONG).show();
 				} else {
-					if(!isFinishing()){
-						AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);							
+					if (!isFinishing()) {
+						AlertDialog.Builder builder = new AlertDialog.Builder(
+								RecipientsActivity.this);
 						builder.setMessage(R.string.error_sending_message)
 								.setTitle(R.string.error_title)
 								.setPositiveButton(android.R.string.ok, null);
 						AlertDialog dialog = builder.create();
 						dialog.show();
 						Log.e(TAG, e.getMessage());
-					}
-					else 
-						Toast.makeText(RecipientsActivity.this, R.string.error_sending_message, Toast.LENGTH_LONG).show();
+					} else
+						Toast.makeText(RecipientsActivity.this,
+								R.string.error_sending_message,
+								Toast.LENGTH_LONG).show();
 				}
 			}
 		});
 	}
+
+	protected OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+
+			if (mGridView.getCheckedItemCount() > 0) {
+				mSendMenuItem.setVisible(true);
+			} else {
+				mSendMenuItem.setVisible(false);
+			}
+
+			ImageView checkImageView = (ImageView) view.findViewById(R.id.checkImageView);
+
+			if (mGridView.isItemChecked(position)) {
+				// Add the recipient
+				checkImageView.setVisibility(View.VISIBLE);
+			} else {
+				// Remove the recipient
+				checkImageView.setVisibility(View.INVISIBLE);
+			}
+		}
+	};
 }
