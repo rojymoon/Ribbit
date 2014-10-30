@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -222,6 +224,7 @@ public class RecipientsActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
+			Animation slide = null;
 
 			if (mGridView.getCheckedItemCount() > 0) {
 				mSendMenuItem.setVisible(true);
@@ -234,9 +237,15 @@ public class RecipientsActivity extends Activity {
 			if (mGridView.isItemChecked(position)) {
 				// Add the recipient
 				checkImageView.setVisibility(View.VISIBLE);
+				
+				slide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
+				checkImageView.startAnimation(slide);	
 			} else {
 				// Remove the recipient
 				checkImageView.setVisibility(View.INVISIBLE);
+				
+				slide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
+				checkImageView.startAnimation(slide);	
 			}
 		}
 	};

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -129,6 +131,7 @@ public class EditFriendsActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
+			Animation slide = null;
 			
 			ImageView checkImageView = (ImageView) view
 					.findViewById(R.id.checkImageView);
@@ -136,11 +139,18 @@ public class EditFriendsActivity extends Activity {
 			if (mGridView.isItemChecked(position)) {
 				// Add friend
 				mFriendsRelation.add(mUsers.get(position));
-				checkImageView.setVisibility(View.VISIBLE);
+				checkImageView.setVisibility(View.VISIBLE);		
+				
+				slide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
+				checkImageView.startAnimation(slide);										
+		       
 			} else {
 				// Remove friend
 				mFriendsRelation.remove(mUsers.get(position));
 				checkImageView.setVisibility(View.INVISIBLE);
+				
+				slide = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
+				checkImageView.startAnimation(slide);	
 			}
 
 			mCurrentUser.saveInBackground(new SaveCallback() {

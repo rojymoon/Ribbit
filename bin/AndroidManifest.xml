@@ -73,7 +73,7 @@
                 android:value="com.treehouselearning.ribbit.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".SendTextActivity"
+            android:name="com.treehouselearning.ribbit.ui.SendTextActivity"
             android:label="@string/title_activity_send_text"
             android:parentActivityName="com.treehouselearning.ribbit.ui.MainActivity"
             android:screenOrientation="portrait" >
