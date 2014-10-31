@@ -14,6 +14,7 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.treehouselearning.ribbit.R;
+import com.treehouselearning.ribbit.RibbitApplication;
 
 public class LoginActivity extends Activity {
 
@@ -95,6 +96,8 @@ public class LoginActivity extends Activity {
 									// if(user != null){
 									if (e == null) {
 										// Success! The user is logged in.
+										RibbitApplication.updateParseInstallation(user);
+										
 										Intent intent = new Intent(
 												LoginActivity.this,
 												MainActivity.class);

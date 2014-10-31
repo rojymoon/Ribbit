@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,6 +21,8 @@ import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -315,6 +318,13 @@ public class MainActivity extends FragmentActivity implements
 
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		
+	/*	int positionOfMenuItem = 1; // or whatever...
+	    MenuItem item = menu.getItem(positionOfMenuItem);
+	    SpannableString s = new SpannableString("My red MenuItem");
+	    s.setSpan(new ForegroundColorSpan(Color.RED), 0, s.length(), 0);
+	    item.setTitle(s);*/
+		
 		return true;
 	}
 

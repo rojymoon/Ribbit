@@ -63,5 +63,6 @@
         <item>Choose Picture</item>
         <item>Choose Video</item>
     </string-array>
+        <string name="push_message">You have a new Ribbit message from %s!</string>
 
 </resources>

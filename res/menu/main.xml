@@ -19,7 +19,7 @@
     </item>
     <item
         android:id="@+id/action_chat"
-        android:icon="@drawable/ic_action_chat"
+        android:icon="@drawable/ic_action_chat_holo_light"
         android:showAsAction="always"
         android:title="@string/menu_chat_label">
     </item>

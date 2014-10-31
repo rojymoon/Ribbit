@@ -34,6 +34,9 @@
         <item name="android:actionOverflowButtonStyle">@style/Theme.Ribbit.OverFlow</item>
         <item name="android:listViewStyle">@style/Theme.Ribbit.LightPurpleBackground</item>
 		<item name="android:gridViewStyle">@style/Theme.Ribbit.LightPurpleBackground.GridView</item>
+		
+		<item name="android:panelBackground">@drawable/menu_dropdown_panel_ribbit</item>	
+		   
     </style>
     
     <style name="Theme.Ribbit.LightPurpleBackground" >
@@ -71,7 +74,7 @@
     </style>
 
     <style name="DropDownListView.Ribbit" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
-        <item name="android:listSelector">@drawable/selectable_background_ribbit</item>
+        <item name="android:listSelector">@drawable/selectable_background_ribbit</item>   
     </style>
 
     <style name="ActionBarTabStyle.Ribbit" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
